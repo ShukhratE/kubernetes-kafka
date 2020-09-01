@@ -26,6 +26,8 @@ spec:
         image: solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef
         command: ['/bin/bash', '/etc/kafka-configmap/init.sh']
         env:
+        - name: JMX_PORT
+          value: "5565"
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -49,6 +51,8 @@ spec:
       - name: zookeeper
         image: solsson/kafka:2.4.1@sha256:79761e15919b4fe9857ec00313c9df799918ad0340b684c0163ab7035907bb5a
         env:
+        - name: JMX_PORT
+          value: "5565"
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -69,12 +73,14 @@ spec:
           name: peer
         - containerPort: 3888
           name: leader-election
+        - containerPort: 5565
+          name: jmx
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 500m
+            memory: 400Mi
           limits:
-            memory: 120Mi
+            memory: 520Mi
         readinessProbe:
           exec:
             command:

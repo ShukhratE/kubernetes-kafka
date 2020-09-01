@@ -15,7 +15,7 @@ data:
     # =======================================
 
     # The Kafka cluster to control.
-    bootstrap.servers=bootstrap:9092
+    bootstrap.servers=bootstrap.kafka:9092
 
     # The maximum interval in milliseconds between two metadata refreshes.
     #metadata.max.age.ms=300000
@@ -169,7 +169,7 @@ data:
     # =======================================
 
     # The zookeeper connect of the Kafka cluster
-    zookeeper.connect=zookeeper:2181/
+    zookeeper.connect=zookeeper.kafka:2181/
 
     # The max number of partitions to move in/out on a given broker at a given time.
     num.concurrent.partition.movements.per.broker=10
@@ -188,7 +188,7 @@ data:
     metric.anomaly.finder.class=com.linkedin.kafka.cruisecontrol.detector.KafkaMetricAnomalyFinder
 
     # The anomaly detection interval
-    anomaly.detection.interval.ms=10000
+    anomaly.detection.interval.ms=120000
 
     # The goal violation to detect.
     anomaly.detection.goals=com.linkedin.kafka.cruisecontrol.analyzer.goals.RackAwareGoal,com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaCapacityGoal,com.linkedin.kafka.cruisecontrol.analyzer.goals.DiskCapacityGoal,com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundCapacityGoal,com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundCapacityGoal,com.linkedin.kafka.cruisecontrol.analyzer.goals.CpuCapacityGoal
